@@ -32,9 +32,12 @@ app.get('/', function(req, res) {
     //data = { uname: "Coimbatore Traffic Department", password: "Password" };
     //res.json(data);
 });
+
+
+
 app.get('/getsocial/uid/:uid',function(req,res){
   var uid=req.params.uid;
-  console.log(sd);
+  // console.log(sd);
   connection.query("select resumepath from user where uid=?",[uid],function(err,resu,field){
       if (err) throw err;
       else{
@@ -43,12 +46,15 @@ app.get('/getsocial/uid/:uid',function(req,res){
       }
   })
 });
+
+
+
 app.get('/getReminder/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
     var sd=req.params.sd;
     var ed=req.params.ed;
     var uid=req.params.uid;
     console.log(sd);
-    connection.query("select * from reminder where uid=? AND r_date>sd AND r_date<ed",[uid,sd,ed],function(err,resu,field){
+    connection.query("select * from reminder where uid=? AND r_date between ? AND ?",[uid,sd,ed],function(err,resu,field){
         if (err) throw err;
         else{
             console.log(resu);
@@ -122,7 +128,11 @@ else
 }
 });
 });
-app.get('s.com/uid/:uid/fname/:fname/rname/:rname/email/:email/mobile/:mobile/avatarurl/:avatarurl/rpath/:rpath',function(req,res)
+
+
+
+
+app.get('profile/uid/:uid/fname/:fname/rname/:rname/email/:email/mobile/:mobile/avatarurl/:avatarurl/rpath/:rpath',function(req,res)
 {
     var uid=req.params.uid;
     var fname=req.params.fname;
