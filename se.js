@@ -54,7 +54,7 @@ app.get('/getReminder/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
     var ed=req.params.ed;
     var uid=req.params.uid;
     console.log(sd);
-    connection.query("select * from reminder where uid=? AND r_date between ? AND ?",[uid,sd,ed],function(err,resu,field){
+    connection.query("select * from reminder where uid=? AND r_date between ? AND 	?",[uid,sd,ed],function(err,resu,field){
         if (err) throw err;
         else{
             console.log(resu);
@@ -160,6 +160,6 @@ else{
 });
 
 //Starting Server
-app.listen(8081); {
+app.listen(process.env.PORT || 8081); {
     console.log("Listening to 8081");
 }
