@@ -3,5 +3,5 @@
   "version": "10.6.3",
   "scripts": {
   "start": "node se.js"
-  },
+  }
 }
