@@ -2,6 +2,6 @@
   "name": "pro-scheduler-backend",
   "version": "10.6.3"
   "scripts": {
-  "start": "node server.js"
+  "start": "node se.js"
   },
 }
