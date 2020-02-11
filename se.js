@@ -18,8 +18,11 @@ var connection = mysql.createConnection({
 
 app.get('/', function(req, res) {
     console.log("Server Is Working!");
-  connection.query('SELECT * from checkdummy', function (error, results, fields) {
-        if (error) throw error;
+  connection.query('SELECT * from checkdummy', function (err, results, fields) {
+        if (err)
+        {
+        	res.json({'err':'You Screwed Up'});
+        }
         else
         // console.log(table);
         // res.json(results);
@@ -39,7 +42,10 @@ app.get('/getsocial/uid/:uid',function(req,res){
   var uid=req.params.uid;
   // console.log(sd);
   connection.query("select resumepath from user where uid=?",[uid],function(err,resu,field){
-      if (err) throw err;
+      if (err)
+        {
+        	res.json({'err':'You Screwed Up'});
+        }
       else{
           console.log(resu);
           res.json(resu);
@@ -55,18 +61,25 @@ app.get('/getReminder/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
     var uid=req.params.uid;
     console.log(sd);
     connection.query("select * from reminder where uid=? AND r_date between ? AND 	?",[uid,sd,ed],function(err,resu,field){
-        if (err) throw err;
+        if (err)
+        {
+        	console.log(sd);
+        	res.json(err);
+        }
         else{
             console.log(resu);
             res.json(resu);
         }
-    })
+    });
   });
 app.get('/getprofiledata/uid/:uid',function(req,res){
     var uid=req.params.uid;
     console.log(sd);
     connection.query("select * from onlineprofile where uid=?",[uid],function(err,resu,field){
-        if (err) throw err;
+        if (err)
+        {
+        	res.json({'err':'You Screwed Up'});
+        }
         else{
             console.log(resu);
             res.json(resu);
@@ -94,8 +107,11 @@ app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
     priority:pri
   }
   
-  connection.query('INSERT INTO reminder SET ?', post, function (error, results, fields) {
-  if (error) throw error;
+  connection.query('INSERT INTO reminder SET ?', post, function (err, results, fields) {
+  if (err)
+        {
+        	res.json({'err':'You Screwed Up'});
+        }
   else
   {
       res.send("success");
@@ -121,7 +137,10 @@ link:link
 }
 connection.query('insert into onlineprofile set ?',p,function(err,result,fie)
 {
-if (err) throw err;
+if (err)
+        {
+        	res.json({'err':'You Screwed Up'});
+        }
 else
 {
     res.send("success");
@@ -152,7 +171,10 @@ app.get('profile/uid/:uid/fname/:fname/rname/:rname/email/:email/mobile/:mobile/
     }
     connection.query('insert into user set ?',s,function(err,results,field)
     {
-if (err) throw err;
+if (err)
+        {
+        	res.json({'err':'You Screwed Up'});
+        }		
 else{
     res.send("success");
 }
