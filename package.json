@@ -2,7 +2,7 @@
   "name": "pro-scheduler-backend",
   "version": "10.6.3",
   "scripts": {
-  "start": "node se.js"
+    "start": "node se.js"
   },
   "dependencies": {
     "express": "^4.17.1",

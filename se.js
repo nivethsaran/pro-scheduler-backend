@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
 
 
 
-
+//Basic Check
 app.get('/', function(req, res) {
     console.log("Server Is Working!");
   connection.query('SELECT * from checkdummy', function (err, results, fields) {
@@ -24,24 +24,16 @@ app.get('/', function(req, res) {
         	res.json({'err':'You Screwed Up'});
         }
         else
-        // console.log(table);
-        // res.json(results);
-        // res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-        // res.send(table);
         res.json(results);
-        // res.send(table)
-
     });
-    //data = { uname: "Coimbatore Traffic Department", password: "Password" };
-    //res.json(data);
 });
 
 
-
+//Get Social Links
 app.get('/getsocial/uid/:uid',function(req,res){
   var uid=req.params.uid;
   // console.log(sd);
-  connection.query("select resumepath from user where uid=?",[uid],function(err,resu,field){
+  connection.query("select * from user where uid=?",[uid],function(err,resu,field){
       if (err)
         {
         	res.json({'err':'You Screwed Up'});
@@ -54,7 +46,7 @@ app.get('/getsocial/uid/:uid',function(req,res){
 });
 
 
-
+//Get Reminder
 app.get('/getReminder/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
     var sd=req.params.sd;
     var ed=req.params.ed;
@@ -72,6 +64,9 @@ app.get('/getReminder/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
         }
     });
   });
+
+
+//Get Profile Data
 app.get('/getprofiledata/uid/:uid',function(req,res){
     var uid=req.params.uid;
     console.log(sd);
@@ -88,6 +83,8 @@ app.get('/getprofiledata/uid/:uid',function(req,res){
   });
 
 
+
+//Insert reminder
 app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/notify/:noti/pri/:pri',function(req,res){
   var date=req.params.date;
   var time=req.params.ed;
@@ -123,7 +120,10 @@ app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
   res.json(req.params);
 });
 
-app.get('insertuser/uid/:uid/plat/:plat/link/:link',function(req,res)
+
+
+//Insert Social Links
+app.get('/insertuser/uid/:uid/plat/:plat/link/:link',function(req,res)
 {
     var uid=req.params.uid;
     var plat=req.params.plat;
@@ -135,7 +135,8 @@ uid:uid,
 plat:plat,
 link:link
 }
-connection.query('insert into onlineprofile set ?',p,function(err,result,fie)
+list=[uid,plat,link]
+connection.query('insert into onlineprofile values(?,?,?)',list,function(err,result,fie)
 {
 if (err)
         {
@@ -150,8 +151,8 @@ else
 
 
 
-
-app.get('profile/uid/:uid/fname/:fname/rname/:rname/email/:email/mobile/:mobile/avatarurl/:avatarurl/rpath/:rpath',function(req,res)
+//Add Profile
+app.get('/profile/uid/:uid/fname/:fname/rname/:rname/email/:email/mobile/:mobile/avatarurl/:avatarurl/rpath/:rpath/design/:design',function(req,res)
 {
     var uid=req.params.uid;
     var fname=req.params.fname;
@@ -160,6 +161,7 @@ app.get('profile/uid/:uid/fname/:fname/rname/:rname/email/:email/mobile/:mobile/
     var mobile=req.params.mobile;
     var avatarurl=req.params.avatarurl;
     var rpath=req.params.rpath;
+    var design=req.params.design;
     var s={
         uid:uid,
         fname:fname,
@@ -169,7 +171,8 @@ app.get('profile/uid/:uid/fname/:fname/rname/:rname/email/:email/mobile/:mobile/
         avatarurl:avatarurl,
         rpath:rpath
     }
-    connection.query('insert into user set ?',s,function(err,results,field)
+    list=[uid,fname,rname,email,mobile,avatarurl,rpath,design];
+    connection.query('insert into user values(?,?,?,?,?,?,?,?)',list,function(err,results,field)
     {
 if (err)
         {
