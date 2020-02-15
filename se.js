@@ -115,9 +115,6 @@ app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
   }
   // Neat!
 });
-
-
-  res.json(req.params);
 });
 
 
