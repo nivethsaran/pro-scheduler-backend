@@ -46,12 +46,11 @@ app.get('/getsocial/uid/:uid',function(req,res){
 
 
 //Get Reminder
-app.get('/getReminder/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
+app.get('/getReminderBn/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
     var sd=req.params.sd;
     var ed=req.params.ed;
     var uid=req.params.uid;
-    console.log(sd);
-    connection.query("select * from reminder where uid=? AND r_date between ? AND 	?",[uid,sd,ed],function(err,resu,field){
+    connection.query("select * from reminder where uid=? AND r_date between ? AND ?",[uid,sd,ed],function(err,resu,field){
         if (err)
         {
         	console.log(sd);
@@ -63,6 +62,40 @@ app.get('/getReminder/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
         }
     });
   });
+
+
+//Get Reminder All
+app.get('/getReminderall/uid/:uid', function (req, res) {
+
+    var uid = req.params.uid;
+    connection.query("select * from reminder where uid=?", [uid], function (err, resu, field) {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            console.log(resu);
+            res.json(resu);
+        }
+    });
+});
+
+//Get Reminder Today
+app.get('/getRemindertoday/uid/:uid', function (req, res) {
+    var dateobj = new Date();
+    var date = dateobj.getFullYear() + '-' + (dateobj.getUTCMonth()+1) + '-' + dateobj.getDate();
+    var uid = req.params.uid;
+    console.log(date)
+    connection.query("select * from reminder where uid=? AND r_date=?", [uid,date], function (err, resu, field) {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            console.log(resu);
+            res.json(resu);
+        }
+    });
+});
+
 
 
 //Get Profile Data
@@ -102,7 +135,7 @@ app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
     priority:pri
   }
 
-  var list=[uid,r_time,r_date,note,title,noti,pri]
+  var list=[uid,time,date,note,title,noti,pri]
   
   connection.query('INSERT INTO reminder values(?,?,?,?,?,?,?)', list, function (err, results, fields) {
   if (err)
