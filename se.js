@@ -32,7 +32,6 @@ app.get('/', function(req, res) {
 //Get Social Links
 app.get('/getsocial/uid/:uid',function(req,res){
   var uid=req.params.uid;
-  // console.log(sd);
   connection.query("select * from user where uid=?",[uid],function(err,resu,field){
       if (err)
         {
@@ -69,7 +68,6 @@ app.get('/getReminder/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
 //Get Profile Data
 app.get('/getprofiledata/uid/:uid',function(req,res){
     var uid=req.params.uid;
-    console.log(sd);
     connection.query("select * from onlineprofile where uid=?",[uid],function(err,resu,field){
         if (err)
         {
@@ -103,8 +101,10 @@ app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
     notification:noti,
     priority:pri
   }
+
+  var list=[uid,r_time,r_date,note,title,noti,pri]
   
-  connection.query('INSERT INTO reminder SET ?', post, function (err, results, fields) {
+  connection.query('INSERT INTO reminder values(?,?,?,?,?,?,?)', list, function (err, results, fields) {
   if (err)
         {
         	res.json({'err':'You Screwed Up'});
