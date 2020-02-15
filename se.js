@@ -85,7 +85,7 @@ app.get('/getprofiledata/uid/:uid',function(req,res){
 //Insert reminder
 app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/notify/:noti/pri/:pri',function(req,res){
   var date=req.params.date;
-  var time=req.params.ed;
+  var time=req.params.time;
   var uid=req.params.uid;
   var note= req.params.note;
   var title=req.params.title;
