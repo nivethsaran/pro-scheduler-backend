@@ -176,7 +176,7 @@ app.get('/updateReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
 
     var list = [time, date, note, noti, pri, uid, title]
 
-    connection.query('UPDATE reminder set r_time=?,r_date=?,note=?,notiification=?,priority=? where uid=? and title=?', list, function (err, results, fields) {
+    connection.query('UPDATE reminder set r_time=?,r_date=?,note=?,notification=?,priority=? where uid=? and title=?', list, function (err, results, fields) {
         if (err) {
             res.send("Error");
         }
