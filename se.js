@@ -125,15 +125,6 @@ app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
   var noti=req.params.noti;
   var pri=req.params.pri;
   
-  var post={
-    uid:uid,
-    r_time:time,
-    r_date:date,
-    note:note,
-    title:title,
-    notification:noti,
-    priority:pri
-  }
 
   var list=[uid,time,date,note,title,noti,pri]
   
@@ -151,6 +142,50 @@ app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
 });
 
 
+//Delete Reminder
+app.get('/deleteReminder/uid/:uid/title/:title', function (req, res) {
+   
+    var uid = req.params.uid;
+    var title = req.params.title;
+    var list = [uid, title];
+
+    connection.query('DELETE FROM reminder WHERE uid=? and title=?', list, function (err, results, fields) {
+        if (err) {
+            res.send("Error");
+        }
+        else {
+            res.send("Success");
+        }
+        // Neat!
+    });
+});
+
+
+
+//UpdateReminder
+//Insert reminder
+app.get('/updateReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/notify/:noti/pri/:pri', function (req, res) {
+    var date = req.params.date;
+    var time = req.params.time;
+    var uid = req.params.uid;
+    var note = req.params.note;
+    var title = req.params.title;
+    var noti = req.params.noti;
+    var pri = req.params.pri;
+
+
+    var list = [time, date, note, noti, pri, uid, title]
+
+    connection.query('UPDATE reminder set r_time=?,r_date=?,note=?,notiification=?,priority=? where uid=? and title=?', list, function (err, results, fields) {
+        if (err) {
+            res.send("Error");
+        }
+        else {
+            res.send("Success");
+        }
+        // Neat!
+    });
+});
 
 //Insert Social Links
 app.get('/insertuser/uid/:uid/plat/:plat/link/:link',function(req,res)
