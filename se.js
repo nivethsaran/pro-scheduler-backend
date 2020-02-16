@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
   connection.query('SELECT * from checkdummy', function (err, results, fields) {
         if (err)
         {
-        	res.json({'err':'You Screwed Up'});
+        	res.send("Error");
         }
         else
         res.json(results);
@@ -35,7 +35,7 @@ app.get('/getsocial/uid/:uid',function(req,res){
   connection.query("select * from user where uid=?",[uid],function(err,resu,field){
       if (err)
         {
-        	res.json({'err':'You Screwed Up'});
+        	res.send("Error");
         }
       else{
           console.log(resu);
@@ -104,7 +104,7 @@ app.get('/getprofiledata/uid/:uid',function(req,res){
     connection.query("select * from onlineprofile where uid=?",[uid],function(err,resu,field){
         if (err)
         {
-        	res.json({'err':'You Screwed Up'});
+        	res.send("Error");
         }
         else{
             console.log(resu);
@@ -140,11 +140,11 @@ app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
   connection.query('INSERT INTO reminder values(?,?,?,?,?,?,?)', list, function (err, results, fields) {
   if (err)
         {
-        	res.json({'err':'You Screwed Up'});
+        	res.send("Error");
         }
   else
   {
-      res.send("success");
+      res.send("Success");
   }
   // Neat!
 });
@@ -170,11 +170,11 @@ connection.query('insert into onlineprofile values(?,?,?)',list,function(err,res
 {
 if (err)
         {
-        	res.json({'err':'You Screwed Up'});
+        	res.send("Error");
         }
 else
 {
-    res.send("success");
+    res.send("Success");
 }
 });
 });
@@ -206,10 +206,10 @@ app.get('/profile/uid/:uid/fname/:fname/rname/:rname/email/:email/mobile/:mobile
     {
 if (err)
         {
-        	res.json({'err':'You Screwed Up'});
+        	res.send("Error");
         }		
 else{
-    res.send("success");
+    res.send("Success");
 }
     });
 });
