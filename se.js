@@ -116,7 +116,7 @@ app.get('/getprofiledata/uid/:uid',function(req,res){
 
 
 //Insert reminder
-app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/notify/:noti/pri/:pri',function(req,res){
+app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/notify/:noti/pri/:pri/rid/:rid',function(req,res){
   var date=req.params.date;
   var time=req.params.time;
   var uid=req.params.uid;
@@ -124,11 +124,12 @@ app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
   var title=req.params.title;
   var noti=req.params.noti;
   var pri=req.params.pri;
+  var rid=req.params.rid;
   
 
-  var list=[uid,time,date,note,title,noti,pri]
+  var list=[uid,time,date,note,title,noti,pri,rid]
   
-  connection.query('INSERT INTO reminder values(?,?,?,?,?,?,?)', list, function (err, results, fields) {
+  connection.query('INSERT INTO reminder values(?,?,?,?,?,?,?,?)', list, function (err, results, fields) {
   if (err)
         {
         	res.send("Error");
@@ -143,13 +144,13 @@ app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
 
 
 //Delete Reminder
-app.get('/deleteReminder/uid/:uid/title/:title', function (req, res) {
+app.get('/deleteReminder/uid/:uid/rid/:rid', function (req, res) {
    
     var uid = req.params.uid;
-    var title = req.params.title;
-    var list = [uid, title];
+    var rid = req.params.rid;
+    var list = [uid, rid];
 
-    connection.query('DELETE FROM reminder WHERE uid=? and title=?', list, function (err, results, fields) {
+    connection.query('DELETE FROM reminder WHERE uid=? and rid=?', list, function (err, results, fields) {
         if (err) {
             res.send("Error");
         }
@@ -164,7 +165,7 @@ app.get('/deleteReminder/uid/:uid/title/:title', function (req, res) {
 
 //UpdateReminder
 //Insert reminder
-app.get('/updateReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/notify/:noti/pri/:pri', function (req, res) {
+app.get('/updateReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/notify/:noti/pri/:pri/rid/:rid', function (req, res) {
     var date = req.params.date;
     var time = req.params.time;
     var uid = req.params.uid;
@@ -172,11 +173,11 @@ app.get('/updateReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
     var title = req.params.title;
     var noti = req.params.noti;
     var pri = req.params.pri;
+    var rid = req.params.rid;
 
+    var list = [time, date, note, noti, pri, title, uid, rid]
 
-    var list = [time, date, note, noti, pri, uid, title]
-
-    connection.query('UPDATE reminder set r_time=?,r_date=?,note=?,notification=?,priority=? where uid=? and title=?', list, function (err, results, fields) {
+    connection.query('UPDATE reminder set r_time=?,r_date=?,note=?,notification=?,priority=?,title=? where uid=? and rid=?', list, function (err, results, fields) {
         if (err) {
             res.send("Error");
         }
