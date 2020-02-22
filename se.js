@@ -64,6 +64,23 @@ app.get('/getReminderBn/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
   });
 
 
+//Get Reminder for Check
+app.get('/getReminderCheck/rid/:rid', function (req, res) {
+    var sd = req.params.sd;
+    var rid=req.params.rid;
+    connection.query("select * from reminder where rid=?", [rid], function (err, resu, field) {
+        if (err) {
+            console.log(sd);
+            res.json(err);
+        }
+        else {
+            console.log(resu);
+            res.json(resu);
+        }
+    });
+});
+
+
 //Get Reminder All
 app.get('/getReminderall/uid/:uid', function (req, res) {
 
