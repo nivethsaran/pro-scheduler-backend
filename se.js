@@ -64,6 +64,9 @@ app.get('/getReminderBn/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
   });
 
 
+
+
+
 //Get Reminder for Check
 app.get('/getReminderCheck/rid/:rid', function (req, res) {
     var sd = req.params.sd;
@@ -233,18 +236,18 @@ else
 });
 
 
-
+//http://localhost:8081/profile/?uid=hello&fname=hello&rname=hello&email=niveth@gmail.com&mobile=73390&avatarurl=https://wow/wow/&rpath=www.comcom.com/wowowow&design=officer
 //Add Profile
-app.get('/profile/uid/:uid/fname/:fname/rname/:rname/email/:email/mobile/:mobile/avatarurl/:avatarurl/rpath/:rpath/design/:design',function(req,res)
+app.get('/profile',function(req,res)
 {
-    var uid=req.params.uid;
-    var fname=req.params.fname;
-    var rname=req.params.rname;
-    var email=req.params.email;
-    var mobile=req.params.mobile;
-    var avatarurl=req.params.avatarurl;
-    var rpath=req.params.rpath;
-    var design=req.params.design;
+    var uid=req.query.uid;
+    var fname = req.query.fname;
+    var rname = req.query.rname;
+    var email = req.query.email;
+    var mobile = req.query.mobile;
+    var avatarurl = req.query.avatarurl;
+    var rpath = req.query.rpath;
+    var design = req.query.design;
     var s={
         uid:uid,
         fname:fname,
@@ -255,6 +258,7 @@ app.get('/profile/uid/:uid/fname/:fname/rname/:rname/email/:email/mobile/:mobile
         rpath:rpath
     }
     list=[uid,fname,rname,email,mobile,avatarurl,rpath,design];
+    console.log(list)
     connection.query('insert into user values(?,?,?,?,?,?,?,?)',list,function(err,results,field)
     {
 if (err)
@@ -266,6 +270,9 @@ else{
 }
     });
 });
+
+
+
 
 //Starting Server
 app.listen(process.env.PORT || 8081); {
