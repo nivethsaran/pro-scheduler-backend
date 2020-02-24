@@ -271,6 +271,36 @@ else{
     });
 });
 
+//Insert Events
+app.get('/insertEvents/name/:name/id/:id/location/:location/date/:date/time/:time',function(req,res){
+    var name=req.params.name;
+    var id=req.params.id;
+    var location=req.params.location;
+    var date= req.params.date;
+    var time=req.params.time;
+   
+    
+    var post={
+      id:id,
+    time:time,
+      date:date,
+      location:location,
+      name:name
+    };
+    
+    connection.query('INSERT INTO events SET ?', post, function (error, results, fields) {
+    if (error) throw error;
+    else
+    {
+        res.send("success");
+    }
+    // Neat!
+  });
+
+
+  res.json(req.params);
+});
+
 
 
 
