@@ -100,7 +100,7 @@ app.get('/getReminderall/uid/:uid', function (req, res) {
 });
 
 app.get('/getVersion', function (req, res) {
-    res.send("1.0")
+    res.json({version:"1.0"})
 });
 
 //Get Reminder Today
