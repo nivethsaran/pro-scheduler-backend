@@ -99,6 +99,10 @@ app.get('/getReminderall/uid/:uid', function (req, res) {
     });
 });
 
+app.get('/getVersion', function (req, res) {
+    res.send("1.0")
+});
+
 //Get Reminder Today
 app.get('/getRemindertoday/uid/:uid', function (req, res) {
     var dateobj = new Date();
