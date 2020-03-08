@@ -50,7 +50,7 @@ app.get('/getReminderBn/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
     var sd=req.params.sd;
     var ed=req.params.ed;
     var uid=req.params.uid;
-    connection.query("select * from reminder where uid=? AND r_date between ? AND ?",[uid,sd,ed],function(err,resu,field){
+    connection.query("select * from reminder where uid=? AND date between ? AND ?",[uid,sd,ed],function(err,resu,field){
         if (err)
         {
         	console.log(sd);
@@ -109,7 +109,7 @@ app.get('/getRemindertoday/uid/:uid', function (req, res) {
     var date = dateobj.getFullYear() + '-' + (dateobj.getUTCMonth()+1) + '-' + dateobj.getDate();
     var uid = req.params.uid;
     console.log(date)
-    connection.query("select * from reminder where uid=? AND r_date=?", [uid,date], function (err, resu, field) {
+    connection.query("select * from reminder where uid=? AND date=?", [uid,date], function (err, resu, field) {
         if (err) {
             res.json(err);
         }
@@ -201,7 +201,7 @@ app.get('/updateReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
 
     var list = [time, date, note, noti, pri, title, uid, rid]
 
-    connection.query('UPDATE reminder set r_time=?,r_date=?,note=?,notification=?,priority=?,title=? where uid=? and rid=?', list, function (err, results, fields) {
+    connection.query('UPDATE reminder set time=?,date=?,note=?,noti=?,pri=?,title=? where uid=? and rid=?', list, function (err, results, fields) {
         if (err) {
             res.send("Error");
         }
