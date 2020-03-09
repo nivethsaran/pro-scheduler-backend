@@ -2,9 +2,47 @@ use db;
 
 show tables;
 
+select*from WARNING;
+
 desc onlineprofile;
 
-desc reminder;
+desc events;
+
+create table checkdummy 
+(
+id varchar(10),
+name varchar(20)
+);
+
+create table user(
+uid varchar(200) primary key,
+fname varchar(200),
+rname varchar(200),
+email varchar(200),
+mobile varchar(200),
+avatarurl varchar(200),
+rpath varchar(200),
+design varchar(200)
+);
+ 
+create table reminder(
+ uid varchar(100),
+ time time,
+ date date,
+ note varchar(100),
+ title varchar(100),
+ noti varchar(100),
+ pri varchar(100),
+ rid varchar(100) primary key,
+ foreign key (uid) references user(uid)
+ );
+ 
+create table onlineprofile
+(uid varchar(100),
+platformname varchar(100),
+link varchar(100));
+ 
+ insert into checkdummy values("hello","hello");
 
 alter table user add designation varchar(20);
 
@@ -14,9 +52,17 @@ select * from onlineprofile;
 
 desc reminder;
 
-ALTER TABLE reminder ADD primary key(title);
 
 select * from reminder;
+
+
+
+delete from reminder where uid='VuoJX2sV0jf5cX2NsnditcbilRy1';
+(select uid,title,r_date from reminder where uid='VuoJX2sV0jf5cX2NsnditcbilRy1' and title='mani' and r_date='2020-02-15');
+
+alter table reminder add column rid varchar(100);
+
+drop table reminder;
 
 Create table events
 (event_id varchar(10) primary key,

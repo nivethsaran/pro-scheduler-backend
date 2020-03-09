@@ -6,9 +6,9 @@ var mysql = require('mysql');
 
 //Establishing Connection
 var connection = mysql.createConnection({
-    host: 'database-2.cg9ufdrbrtne.us-east-1.rds.amazonaws.com',
-    user: 'admin',
-    password: 'password',
+    host: 'localhost',
+    user: 'root',
+    password: '1234',
     database: 'db'
 
 });
@@ -159,7 +159,7 @@ app.get('/insertReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
       res.send("Success");
   }
   // Neat!
-});
+}); 
 });
 
 
@@ -275,6 +275,6 @@ else{
 
 
 //Starting Server
-app.listen(process.env.PORT || 8081); {
+app.listen(process.env.PORT || 8080); {
     console.log("Listening to 8081");
 }
