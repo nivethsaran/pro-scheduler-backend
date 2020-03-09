@@ -335,6 +335,47 @@ app.get('/insertEvents/name/:name/id/:id/date/:date/time/:time', function (req, 
 });
 
 
+//Get History Data
+app.get('/gethistory/uid/:uid', function (req, res) {
+    var uid = req.params.uid;
+    connection.query("select * from history where uid=?", [uid], function (err, resu, field) {
+        if (err) {
+            res.send("Error");
+        }
+        else {
+            console.log(resu);
+            res.json(resu);
+        }
+    })
+});
+
+
+
+
+
+
+app.get('/inserthistory/uid/:uid/time/:time', function (req, res) {
+    var uid=req.params.uid;
+    var time = req.params.time;
+
+
+    var post = {
+        uid: uid,
+        timestamp: time,
+    };
+
+    connection.query('INSERT INTO history SET ?', post, function (error, results, fields) {
+        if (error) throw error;
+        else {
+            res.send("success");
+        }
+        // Neat!
+    });
+
+
+    res.json(req.params);
+});
+
 //Get Event Data
 app.get('/geteventdata', function (req, res) {
     
