@@ -275,6 +275,36 @@ else{
     });
 });
 
+//http://localhost:8081/profile/?uid=hello&fname=hello&rname=hello&email=niveth@gmail.com&mobile=73390&avatarurl=https://wow/wow/&rpath=www.comcom.com/wowowow&design=officer
+//Update Profile
+app.get('/updateprofile', function (req, res) {
+    var uid = req.query.uid;
+    var fname = req.query.fname;
+    var lname = req.query.lname;
+    var email = req.query.email;
+    var mobile = req.query.mobile;
+    var rpath = req.query.rpath;
+    var s = {
+        uid: uid,
+        fname: fname,
+        rname: rname,
+        email: email,
+        mobile: mobile,
+        avatarurl: avatarurl,
+        rpath: rpath
+    }
+    list = [fname, lname, email, mobile, rpath, uid];
+    console.log(list)
+    connection.query('update user set fname=?,lname=?,email=?,mobile=?,rpath=? where uid=?', list, function (err, results, field) {
+        if (err) {
+            res.send("Error");
+        }
+        else {
+            res.send("Success");
+        }
+    });
+});
+
 
 app.get('/insertEvents/name/:name/id/:id/date/:date/time/:time', function (req, res) {
     var name = req.params.name;
