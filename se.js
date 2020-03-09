@@ -295,7 +295,7 @@ app.get('/updateprofile', function (req, res) {
     }
     list = [fname, lname, email, mobile, rpath, uid];
     console.log(list)
-    connection.query('update user set fname=?,lname=?,email=?,mobile=?,rpath=? where uid=?', list, function (err, results, field) {
+    connection.query('update user set fname=?,rname=?,email=?,mobile=?,rpath=? where uid=?', list, function (err, results, field) {
         if (err) {
             res.send("Error");
         }
