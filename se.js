@@ -284,15 +284,15 @@ app.get('/updateprofile', function (req, res) {
     var email = req.query.email;
     var mobile = req.query.mobile;
     var rpath = req.query.rpath;
-    var s = {
-        uid: uid,
-        fname: fname,
-        rname: rname,
-        email: email,
-        mobile: mobile,
-        avatarurl: avatarurl,
-        rpath: rpath
-    }
+    // var s = {
+    //     uid: uid,
+    //     fname: fname,
+    //     rname: rname,
+    //     email: email,
+    //     mobile: mobile,
+    //     avatarurl: avatarurl,
+    //     rpath: rpath
+    // }
     list = [fname, lname, email, mobile, rpath, uid];
     console.log(list)
     connection.query('update user set fname=?,rname=?,email=?,mobile=?,rpath=? where uid=?', list, function (err, results, field) {
