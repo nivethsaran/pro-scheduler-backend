@@ -4,14 +4,16 @@ var app = express();
 var mysql = require('mysql');
 
 
+<<<<<<< HEAD
 //Establishing Connection
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '1234',
     database: 'db'
+=======
+>>>>>>> 2a302cae6b0fe09f4091ef8917a2f0e6db4f3157
 
-});
 
 
 
@@ -50,7 +52,7 @@ app.get('/getReminderBn/startdate/:sd/enddate/:ed/uid/:uid',function(req,res){
     var sd=req.params.sd;
     var ed=req.params.ed;
     var uid=req.params.uid;
-    connection.query("select * from reminder where uid=? AND r_date between ? AND ?",[uid,sd,ed],function(err,resu,field){
+    connection.query("select * from reminder where uid=? AND date between ? AND ?",[uid,sd,ed],function(err,resu,field){
         if (err)
         {
         	console.log(sd);
@@ -99,13 +101,17 @@ app.get('/getReminderall/uid/:uid', function (req, res) {
     });
 });
 
+app.get('/getVersion', function (req, res) {
+    res.json({version:"1.0"})
+});
+
 //Get Reminder Today
 app.get('/getRemindertoday/uid/:uid', function (req, res) {
     var dateobj = new Date();
     var date = dateobj.getFullYear() + '-' + (dateobj.getUTCMonth()+1) + '-' + dateobj.getDate();
     var uid = req.params.uid;
     console.log(date)
-    connection.query("select * from reminder where uid=? AND r_date=?", [uid,date], function (err, resu, field) {
+    connection.query("select * from reminder where uid=? AND date=?", [uid,date], function (err, resu, field) {
         if (err) {
             res.json(err);
         }
@@ -197,7 +203,7 @@ app.get('/updateReminder/date/:date/time/:time/uid/:uid/note/:note/title/:title/
 
     var list = [time, date, note, noti, pri, title, uid, rid]
 
-    connection.query('UPDATE reminder set r_time=?,r_date=?,note=?,notification=?,priority=?,title=? where uid=? and rid=?', list, function (err, results, fields) {
+    connection.query('UPDATE reminder set time=?,date=?,note=?,noti=?,pri=?,title=? where uid=? and rid=?', list, function (err, results, fields) {
         if (err) {
             res.send("Error");
         }
