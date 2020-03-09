@@ -276,7 +276,48 @@ else{
 });
 
 
+app.get('/insertEvents/name/:name/id/:id/date/:date/time/:time', function (req, res) {
+    var name = req.params.name;
+    var id = req.params.id;
+    var location = req.params.location;
+    var date = req.params.date;
+    var time = req.params.time;
 
+
+    var post = {
+        id: id,
+        time: time,
+        date: date,
+        location: location,
+        name: name
+    };
+
+    connection.query('INSERT INTO events SET ?', post, function (error, results, fields) {
+        if (error) throw error;
+        else {
+            res.send("success");
+        }
+        // Neat!
+    });
+
+
+    res.json(req.params);
+});
+
+
+//Get Event Data
+app.get('/geteventdata', function (req, res) {
+    
+    connection.query("select * from event",[], function (err, resu, field) {
+        if (err) {
+            res.send("Error");
+        }
+        else {
+            console.log(resu);
+            res.json(resu);
+        }
+    })
+});
 
 //Starting Server
 app.listen(process.env.PORT || 8080); {
