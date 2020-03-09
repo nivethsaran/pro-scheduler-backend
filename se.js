@@ -4,7 +4,14 @@ var app = express();
 var mysql = require('mysql');
 
 
+//Establishing Connection
+var connection = mysql.createConnection({
+    host: 'database-2.cg9ufdrbrtne.us-east-1.rds.amazonaws.com',
+    user: 'arnab',
+    password: 'arnab135',
+    database: 'db'
 
+});
 
 
 
