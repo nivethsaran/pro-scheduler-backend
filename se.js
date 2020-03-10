@@ -381,7 +381,7 @@ app.get('/geteventdata/sd/:sd/ed/:ed', function (req, res) {
     var sd = req.params.sd;
     var ed=req.params.ed;
 
-    connection.query("select * from event where date between ? AND ?",[sd,ed], function (err, resu, field) {
+    connection.query("select * from event where eventdate between ? AND ?",[sd,ed], function (err, resu, field) {
         if (err) {
             res.send("Error");
         }
