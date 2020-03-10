@@ -1,3 +1,7 @@
+show databases;
+
+create database db;
+
 use db;
 
 show tables;
@@ -41,13 +45,41 @@ create table onlineprofile
 (uid varchar(100),
 platformname varchar(100),
 link varchar(100));
+
+
+create table event
+(eventid varchar(100) primary key,
+eventname varchar(100),
+eventtime time,
+eventdate date);
+
+create table history	
+(uid varchar(100),
+timestamp varchar(100));
+
+ insert into event values('1','Name','23:00:00','2020-03-16');
+  insert into event values('2','CIR','23:00:00','2020-03-10');
+   insert into event values('3','Holiday','23:00:00','2020-04-09');
+    insert into event values('4','Eventide','23:00:00','2020-03-16');
+     insert into event values('5','Celeb','23:00:00','2020-03-16');
+      insert into event values('6','TheDay','23:00:00','2020-03-16');
+ 
+ select* from event;
+ 
+ select* from user;
+ 
+ select* from history;
  
  insert into checkdummy values("hello","hello");
 
 alter table user add designation varchar(20);
 
-insert into user values('VuoJX2sV0jf5cX2NsnditcbilRy1','Niveth','Saran','nivethsaran@gmail.com','7339065577','nil','nil','Assosiate Professor');
+insert into user values('VuoJX2sV0jf5cX2NsnditcbilRy1','Roy','Keane','roykeane@pl.com','9090909090','shorturl.at/cjDT9','shorturl.at/fsEKT','Assosiate Professor');
 
+insert into onlineprofile values('VuoJX2sV0jf5cX2NsnditcbilRy1','github','www.github.com');
+insert into onlineprofile values('VuoJX2sV0jf5cX2NsnditcbilRy1','website','www.wordpress.com');
+insert into onlineprofile values('VuoJX2sV0jf5cX2NsnditcbilRy1','linkedin','www.linkedin.com');
+insert into onlineprofile values('VuoJX2sV0jf5cX2NsnditcbilRy1','instagram','www.instagram.com');
 select * from onlineprofile;	
 
 desc reminder;

@@ -377,9 +377,11 @@ app.get('/inserthistory/uid/:uid/time/:time', function (req, res) {
 });
 
 //Get Event Data
-app.get('/geteventdata', function (req, res) {
-    
-    connection.query("select * from event",[], function (err, resu, field) {
+app.get('/geteventdata/sd/:sd/ed/:ed', function (req, res) {
+    var sd = req.params.sd;
+    var ed=req.params.ed;
+
+    connection.query("select * from event where date between ? AND ?",[sd,ed], function (err, resu, field) {
         if (err) {
             res.send("Error");
         }
