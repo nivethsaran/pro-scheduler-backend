@@ -89,7 +89,7 @@ select * from reminder;
 
 
 
-delete from reminder where uid='VuoJX2sV0jf5cX2NsnditcbilRy1';
+delete from reminder where uid='	';
 (select uid,title,r_date from reminder where uid='VuoJX2sV0jf5cX2NsnditcbilRy1' and title='mani' and r_date='2020-02-15');
 
 alter table reminder add column rid varchar(100);
