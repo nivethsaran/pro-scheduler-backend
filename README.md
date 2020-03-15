@@ -1,2 +1,2 @@
 # ProSchedulerBackend
-Software Project
+Software Project -Faculty Calendar Scheduler
