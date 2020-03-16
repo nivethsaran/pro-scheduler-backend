@@ -4,6 +4,7 @@ create database db;
 
 use db;
 
+
 show tables;
 
 select*from WARNING;
@@ -75,11 +76,40 @@ timestamp varchar(100));
 alter table user add designation varchar(20);
 
 insert into user values('VuoJX2sV0jf5cX2NsnditcbilRy1','Roy','Keane','roykeane@pl.com','9090909090','shorturl.at/cjDT9','shorturl.at/fsEKT','Assosiate Professor');
+insert into user values('Q5QViVDMqJTa83HWKkmqUh5LHsA2','P','Abhiram','abhiram@somemail.com','9090909090','shorturl.at/cjDT9','shorturl.at/fsEKT','Assistant Professor');
+insert into user values('3djUcqgAXOPv6LRqD8sJBEtsTJw2','M','Vinith','vinith@somemail.com','9090909087','shorturl.at/cjDT9','shorturl.at/fsEKT','Professor');
+insert into user values('hJyR5leBS2fH0RFU8jnj9eqx7zm1','Navya','Navya','navya@somemail.com','9090909012','shorturl.at/cjDT9','shorturl.at/fsEKT','Assistant Professor');
+insert into user values('u7fwMT1t9eRjWQps2LFn8voDZn53','B','Pavithron','pavi@somemail.com','9090909045','shorturl.at/cjDT9','shorturl.at/fsEKT','Assistant Professor');
+insert into user values('3tnP7fGFilOAvZyJTgCNPvZtIE43','Arnab','Datta','arnab@somemail.com','9090909067','shorturl.at/cjDT9','shorturl.at/fsEKT','Assistant Professor');
 
-insert into onlineprofile values('VuoJX2sV0jf5cX2NsnditcbilRy1','github','www.github.com');
-insert into onlineprofile values('VuoJX2sV0jf5cX2NsnditcbilRy1','website','www.wordpress.com');
-insert into onlineprofile values('VuoJX2sV0jf5cX2NsnditcbilRy1','linkedin','www.linkedin.com');
-insert into onlineprofile values('VuoJX2sV0jf5cX2NsnditcbilRy1','instagram','www.instagram.com');
+
+
+insert into onlineprofile values('3djUcqgAXOPv6LRqD8sJBEtsTJw2','github','www.github.com');
+insert into onlineprofile values('3djUcqgAXOPv6LRqD8sJBEtsTJw2','website','www.wordpress.com');
+insert into onlineprofile values('3djUcqgAXOPv6LRqD8sJBEtsTJw2','linkedin','www.linkedin.com');
+insert into onlineprofile values('3djUcqgAXOPv6LRqD8sJBEtsTJw2','instagram','www.instagram.com');
+
+
+insert into onlineprofile values('hJyR5leBS2fH0RFU8jnj9eqx7zm1','github','www.github.com');
+insert into onlineprofile values('hJyR5leBS2fH0RFU8jnj9eqx7zm1','website','www.wordpress.com');
+insert into onlineprofile values('hJyR5leBS2fH0RFU8jnj9eqx7zm1','linkedin','www.linkedin.com');
+insert into onlineprofile values('hJyR5leBS2fH0RFU8jnj9eqx7zm1','instagram','www.instagram.com');
+
+
+insert into onlineprofile values('u7fwMT1t9eRjWQps2LFn8voDZn53','github','www.github.com');
+insert into onlineprofile values('u7fwMT1t9eRjWQps2LFn8voDZn53','website','www.wordpress.com');
+insert into onlineprofile values('u7fwMT1t9eRjWQps2LFn8voDZn53','linkedin','www.linkedin.com');
+insert into onlineprofile values('u7fwMT1t9eRjWQps2LFn8voDZn53','instagram','www.instagram.com');
+
+insert into onlineprofile values('3tnP7fGFilOAvZyJTgCNPvZtIE43','github','www.github.com');
+insert into onlineprofile values('3tnP7fGFilOAvZyJTgCNPvZtIE43','website','www.wordpress.com');
+insert into onlineprofile values('3tnP7fGFilOAvZyJTgCNPvZtIE43','linkedin','www.linkedin.com');
+insert into onlineprofile values('3tnP7fGFilOAvZyJTgCNPvZtIE43','instagram','www.instagram.com');
+
+insert into onlineprofile values('Q5QViVDMqJTa83HWKkmqUh5LHsA2','github','www.github.com');
+insert into onlineprofile values('Q5QViVDMqJTa83HWKkmqUh5LHsA2','website','www.wordpress.com');
+insert into onlineprofile values('Q5QViVDMqJTa83HWKkmqUh5LHsA2','linkedin','www.linkedin.com');
+insert into onlineprofile values('Q5QViVDMqJTa83HWKkmqUh5LHsA2','instagram','www.instagram.com');
 select * from onlineprofile;	
 
 desc reminder;
@@ -87,6 +117,10 @@ desc reminder;
 
 select * from reminder;
 
+select * from reminder where rid='Q5QViVDMqJTa83HWKkmqUh5LHsA21584284683268';
+
+
+delete from reminder where not uid='VuoJX2sV0jf5cX2NsnditcbilRy1';
 
 
 delete from reminder where uid='	';
